@@ -30,6 +30,8 @@ class Graph{
 
 };
 
+
+// BFS TRaversal of a graph
 void travesal(unordered_map<int , vector<int>> & adj , int start){
     unordered_map<int , bool> visited ;
     queue<int> q ;
@@ -41,9 +43,22 @@ void travesal(unordered_map<int , vector<int>> & adj , int start){
         q.pop() ;
         cout << x << "/t" ;
         for(int i=0 ; i<adj[x].size() ; i++){
-
-
+            if(!visited[adj[x][i]]){
+                q.push(adj[x][i]);
+                visited[adj[x][i]] = 1 ;
+            }
         }}
+}
+
+// DFS Traversal of a graph
+void dfs(unordered_map<int , vector<int>> & adj , int start , unordered_map<int , bool> & visited){
+    cout << start << "/t" ;
+    visited[start] = 1 ;
+    for(int i=0 ; i<adj[start].size() ; i++){
+        if(!visited[adj[start][i]]){
+            dfs(adj , adj[start][i] , visited) ;
+        }
+    }
 }
 
 int main(){

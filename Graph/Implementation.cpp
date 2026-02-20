@@ -36,7 +36,8 @@ class Graph{
 };
 
 vector<vector<int>> printAdj(int n , int m , vector<vector<int>> & edges){
-    vector<int> ans[n] ;
+    vector<int> ans[n] ; // this is an array of vectors like the code int ans[n] ;
+    // but in this case each index of the array will store a vector
     for(int i=0 ; i<m ; i++){
         int u = edges[i][0] ;
         int v = edges[i][1] ;

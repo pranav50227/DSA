@@ -14,14 +14,14 @@ class MaxHeap{
     MaxHeap(int n){
         arr = new int[n] ;
         size = 0 ;
-        total_size = 10 ;
+        total_size = 100 ;
     }
 
     // insert into the heap 
 
     void insert(int value ){
         if(size == total_size){
-            cout << "Heap Overflow " ;
+            cout << "Heap Overflow " << endl ;
             return ;
         }
 
@@ -46,6 +46,34 @@ class MaxHeap{
 
         cout << endl ;
     }
+
+    void Heapify(int index){
+        int largest = index ;
+        int left = index*2 +1 ;
+        int right = index*2 + 2 ;
+
+        // Largest will store the index of the number which is greater between parent and the childer 
+        if(left < size && arr[left] > arr[largest]) largest = left ;
+        else if(right < size && arr[right] > arr[largest]) largest = right ;
+        else return ;
+
+        if(largest != index ){
+            swap(arr[index] , arr[largest]) ;
+            Heapify(largest) ;
+        }
+    }
+
+    void deletion(){
+        if(size == 0){cout << " Heap Underflow \n" ; return ;}
+
+        cout << arr[0] << "deleted from the heap \n" ;
+        arr[0] = arr[size-1] ;
+        size -- ;
+        if(size == 0) return ;
+        int index = 0 ;
+
+        Heapify(0) ;
+    }
 };
 
 int main(){
@@ -55,7 +83,18 @@ int main(){
     H1.insert(4) ;
     H1.insert(14) ;
     H1.insert(11) ;
+    H1.insert(13) ;
+    H1.insert(15) ;
+    H1.insert(19) ;
+    H1.insert(23) ;
+    H1.insert(80) ;
+    H1.insert(90) ;
+    H1.insert(100) ;
 
+    H1.print() ;
+    H1.deletion() ;
+    H1.print() ;
+    H1.deletion() ;
     H1.print() ;
 
     return 0 ;
